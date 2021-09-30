@@ -9,6 +9,7 @@ pipeline {
                    gv = load "script.groovy" 
                 }
             }
+        }
         
         stage('Setup Parameters') {
             steps {
