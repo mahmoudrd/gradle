@@ -2,6 +2,7 @@ def param(){
                     properties([
                         parameters([booleanParam('CREATE_JAR')
                         ])
+                    ])
 }
 def build(){
                 if (params.CREATE_JAR) {
