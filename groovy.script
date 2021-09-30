@@ -1,0 +1,18 @@
+def param(){
+                    properties([
+                        parameters([booleanParam('CREATE_JAR')
+                        ])
+}
+def build(){
+                if (params.CREATE_JAR) {
+                    dir('complete') {
+                        sh "./gradlew clean jar"
+                    }
+                } else {
+                    dir('complete') {
+                        sh "./gradlew clean build"
+                    }
+                }
+
+}
+return this
