@@ -3,14 +3,17 @@ pipeline {
     agent any
     
     stages{
+        stage('init'){
+            steps {
+                script {
+                   gv = load "script.groovy" 
+                }
+            }
         
         stage('Setup Parameters') {
             steps {
                 script {
-                    properties([
-                        parameters([booleanParam('CREATE_JAR')
-                        ])
-                    ])
+                    gv.param()
                 }                
             }
         }
@@ -25,16 +28,8 @@ pipeline {
    
             steps{
                 script{
-                if (params.CREATE_JAR) {
-                    dir('complete') {
-                        sh "./gradlew clean jar"
-                    }
-                } else {
-                    dir('complete') {
-                        sh "./gradlew clean build"
-                    }
+                    gv.build()
                 }
-            }
             }
         }
     }
